@@ -1,0 +1,56 @@
+Entity\Permission:
+    type: entity
+    table: permission
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        parentId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: parent_id
+        label:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+        path:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+        icon:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        status:
+            type: boolean
+            nullable: false
+        link:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        isMenu:
+            type: boolean
+            nullable: false
+            column: is_menu
+        lv:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+    lifecycleCallbacks: {  }

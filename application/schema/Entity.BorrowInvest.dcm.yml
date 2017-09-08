@@ -1,0 +1,180 @@
+Entity\BorrowInvest:
+    type: entity
+    table: borrow_invest
+    indexes:
+        investor_uid:
+            columns:
+                - uid
+                - status
+        borrow_id:
+            columns:
+                - bid
+                - uid
+                - status
+        investor_uid2:
+            columns:
+                - uid
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        bid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        debtId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: debt_id
+        uid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        capital:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+        capitalYear:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+            column: capital_year
+        interest:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+        fee:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+        receiveCapital:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+            column: receive_capital
+        receiveInterest:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+            column: receive_interest
+        paidFee:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+            column: paid_fee
+        status:
+            type: boolean
+            nullable: false
+        dealStatus:
+            type: boolean
+            nullable: false
+            column: deal_status
+        discount:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+        orderNo:
+            type: string
+            nullable: false
+            length: 32
+            options:
+                fixed: false
+            column: order_no
+        addTime:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: add_time
+        addMs:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+            column: add_ms
+        deadline:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        isAuto:
+            type: boolean
+            nullable: false
+            column: is_auto
+        client:
+            type: boolean
+            nullable: false
+        serviceId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: service_id
+        sale:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+        jobNum:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: false
+            column: job_num
+        brokerage:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+        brokerageExt:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+            column: brokerage_ext
+        brokerageType:
+            type: boolean
+            nullable: false
+            column: brokerage_type
+        isFirst:
+            type: boolean
+            nullable: false
+            column: is_first
+        rate:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+        isBeyond:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: is_beyond
+        addIp:
+            type: string
+            nullable: true
+            length: 15
+            options:
+                fixed: false
+            column: add_ip
+    lifecycleCallbacks: {  }

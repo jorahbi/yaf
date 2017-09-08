@@ -1,0 +1,60 @@
+Entity\KoActivityQinziRate1:
+    type: entity
+    table: ko_activity_qinzi_rate1
+    uniqueConstraints:
+        idx_1dsigy:
+            columns:
+                - type
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        minInvestAmount:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: 起投金额（元）
+                default: '0'
+            column: min_invest_amount
+        incomeRange:
+            type: text
+            nullable: false
+            length: null
+            options:
+                fixed: false
+                comment: 收益范围，json
+            column: income_range
+        incomeRate:
+            type: text
+            nullable: false
+            length: null
+            options:
+                fixed: false
+                comment: 收益率/概率，json
+            column: income_rate
+        type:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: 产品类型
+        createdTime:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: created_time
+        updatedTime:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: updated_time
+    lifecycleCallbacks: {  }

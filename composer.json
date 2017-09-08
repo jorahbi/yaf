@@ -1,0 +1,18 @@
+{
+    "require": {
+        "doctrine/orm": "^2.5",
+        "symfony/yaml": "~3.3.6",
+        "phpoffice/phpexcel": "^1.8.1",
+        "imagine/imagine": "^0.7.1",
+        "swiftmailer/swiftmailer": "^6.0",
+        "php-amqplib/php-amqplib": "~2.7.0-rc1"
+    },
+    "autoload": {
+    	"psr-4": {
+    		"Commands\\": "bin/Commands",
+            "Entity\\": "application/Entity",
+            "Models\\": "application/models",
+            "Yaf\\": "vendor/yaf/yaf" 
+    	}
+    }
+}

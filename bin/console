@@ -1,0 +1,13 @@
+#!/usr/bin/env php
+<?php
+
+define('APPLICATION_PATH', dirname(dirname(__FILE__)));
+\Yaf\Loader::import(APPLICATION_PATH . '/vendor/autoload.php');
+$result = new \Yaf\Config\Ini(APPLICATION_PATH . '/conf/application.ini');
+define('ENTITYS_DIRECTORY', $result->common->application->orm->entitys);
+define('YML_DIRECTORY', $result->common->application->orm->yml);
+define('REPOSITORY_DIRECTORY', $result->common->application->orm->repository);
+define('IS_DEBUG', isset($result->develop->application->debug) && $result->develop->application->debug ?: false);
+
+unset($result);
+\Commands\Proxy\DoctrineCommandHelper::start();

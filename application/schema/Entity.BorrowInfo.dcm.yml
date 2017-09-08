@@ -1,0 +1,297 @@
+Entity\BorrowInfo:
+    type: entity
+    table: borrow_info
+    indexes:
+        type_list:
+            columns:
+                - borrow_type
+                - is_show
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        package:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+        classify:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        borrowName:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: borrow_name
+        borrowOrder:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: borrow_order
+        borrowUid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: borrow_uid
+        borrowType:
+            type: boolean
+            nullable: false
+            column: borrow_type
+        duration:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        durationUnit:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: false
+            column: duration_unit
+        durationMonth:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 2
+            column: duration_month
+        durationOriginal:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: duration_original
+        money:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+        investMoney:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+            column: invest_money
+        interest:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+        finialMoney:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+            column: finial_money
+        finialInterest:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+            column: finial_interest
+        finialBaseInterest:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+            column: finial_base_interest
+        receiveMoney:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+            column: receive_money
+        receiveInterest:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+            column: receive_interest
+        interestRate:
+            type: decimal
+            nullable: false
+            precision: 5
+            scale: 2
+            column: interest_rate
+        baseRate:
+            type: decimal
+            nullable: false
+            precision: 5
+            scale: 2
+            column: base_rate
+        alsRate:
+            type: decimal
+            nullable: false
+            precision: 5
+            scale: 2
+            column: als_rate
+        repaymentType:
+            type: boolean
+            nullable: false
+            column: repayment_type
+        repaymentDay:
+            type: boolean
+            nullable: false
+            column: repayment_day
+        borrowStatus:
+            type: boolean
+            nullable: false
+            column: borrow_status
+        cover:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        startPrice:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+            column: start_price
+        upperPrice:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+            column: upper_price
+        perPrice:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+            column: per_price
+        startTime:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: start_time
+        hasMoney:
+            type: decimal
+            nullable: true
+            precision: 15
+            scale: 2
+            column: has_money
+        openTime:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: open_time
+        endTime:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: end_time
+        fullTime:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: full_time
+        deadline:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        isShow:
+            type: boolean
+            nullable: false
+            column: is_show
+        isAuto:
+            type: boolean
+            nullable: false
+            column: is_auto
+        isOverdue:
+            type: boolean
+            nullable: false
+            column: is_overdue
+        isLoan:
+            type: boolean
+            nullable: false
+            column: is_loan
+        couponsType:
+            type: boolean
+            nullable: false
+            column: coupons_type
+        hits:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        risk:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        danbaoName:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: danbao_name
+        zhaiwuName:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: zhaiwu_name
+        zhaiwuIdcard:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: zhaiwu_idcard
+        zhaiwuCompany:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: zhaiwu_company
+        pactType:
+            type: boolean
+            nullable: false
+            column: pact_type
+        pactZhang:
+            type: boolean
+            nullable: false
+            column: pact_zhang
+        rongziyongtu:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        saleAuto:
+            type: boolean
+            nullable: false
+            column: sale_auto
+        addTime:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: add_time
+    lifecycleCallbacks: {  }

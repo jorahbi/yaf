@@ -1,0 +1,47 @@
+Entity\AdminPosition:
+    type: entity
+    table: admin_position
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        parentId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: parent_id
+        title:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+        adminId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: admin_id
+        createtime:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        isEnable:
+            type: boolean
+            nullable: false
+            column: is_enable
+        permission:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,116 @@
+Entity\Admin:
+    type: entity
+    repositoryClass: Models\AdminRepository
+    table: admin
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        username:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        password:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        adminLimit:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: admin_limit
+        groupId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: group_id
+        positionId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: position_id
+        realName:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+            column: real_name
+        jobNum:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: false
+            column: job_num
+        phone:
+            type: string
+            nullable: false
+            length: 18
+            options:
+                fixed: false
+        qq:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+        sex:
+            type: boolean
+            nullable: false
+        bbsUid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: bbs_uid
+        valid:
+            type: boolean
+            nullable: false
+        isService:
+            type: boolean
+            nullable: false
+            column: is_service
+        isInvestmentAdviser:
+            type: boolean
+            nullable: false
+            column: is_investment_adviser
+        isBbsAdmin:
+            type: boolean
+            nullable: false
+            column: is_bbs_admin
+        isPartTime:
+            type: boolean
+            nullable: false
+            column: is_part_time
+        isAutoAllot:
+            type: boolean
+            nullable: false
+            column: is_auto_allot
+        skin:
+            type: boolean
+            nullable: false
+        isServiceOnline:
+            type: boolean
+            nullable: false
+            column: is_service_online
+        cno:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+    lifecycleCallbacks: {  }

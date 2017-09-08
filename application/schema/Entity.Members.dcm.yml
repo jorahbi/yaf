@@ -1,0 +1,270 @@
+Entity\Members:
+    type: entity
+    table: members
+    indexes:
+        user_type:
+            columns:
+                - user_type
+        user_integral:
+            columns:
+                - user_integral
+        user_phone:
+            columns:
+                - user_phone
+        user_name:
+            columns:
+                - user_name
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userName:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: user_name
+        nickName:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: nick_name
+        realName:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: real_name
+        userPass:
+            type: string
+            nullable: false
+            length: 32
+            options:
+                fixed: false
+            column: user_pass
+        dealPass:
+            type: string
+            nullable: false
+            length: 32
+            options:
+                fixed: false
+            column: deal_pass
+        appDealPass:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: false
+            column: app_deal_pass
+        userEmail:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: user_email
+        userPhone:
+            type: string
+            nullable: false
+            length: 11
+            options:
+                fixed: false
+            column: user_phone
+        userAge:
+            type: boolean
+            nullable: true
+            column: user_age
+        userIdcard:
+            type: string
+            nullable: false
+            length: 30
+            options:
+                fixed: false
+            column: user_idcard
+        userIdcardType:
+            type: boolean
+            nullable: false
+            column: user_idcard_type
+        userGrowth:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_growth
+        userIntegral:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_integral
+        userExperience:
+            type: boolean
+            nullable: false
+            column: user_experience
+        userNovice:
+            type: boolean
+            nullable: true
+            column: user_novice
+        userType:
+            type: boolean
+            nullable: false
+            column: user_type
+        userHead:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: user_head
+        vipLevel:
+            type: boolean
+            nullable: false
+            column: vip_level
+        vipTime:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: vip_time
+        bbsLevelId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: bbs_level_id
+        bbsExp:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: bbs_exp
+        accountMoney:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+            column: account_money
+        receiveMoney:
+            type: decimal
+            nullable: false
+            precision: 15
+            scale: 2
+            column: receive_money
+        recommend:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+        friendId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: friend_id
+        idStatus:
+            type: boolean
+            nullable: false
+            column: id_status
+        emailStatus:
+            type: boolean
+            nullable: false
+            column: email_status
+        accountStatus:
+            type: boolean
+            nullable: false
+            column: account_status
+        weixinStatus:
+            type: boolean
+            nullable: false
+            column: weixin_status
+        questionStatus:
+            type: boolean
+            nullable: false
+            column: question_status
+        client:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        serviceId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: service_id
+        investmentAdviserId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: investment_adviser_id
+        qqId:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: qq_id
+        wxId:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: wx_id
+        loginProtect:
+            type: boolean
+            nullable: false
+            column: login_protect
+        loginErrorNum:
+            type: boolean
+            nullable: false
+            column: login_error_num
+        loginNum:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: login_num
+        memberStatus:
+            type: boolean
+            nullable: false
+            column: member_status
+        lastTime:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: last_time
+        sinaPasswd:
+            type: boolean
+            nullable: true
+            column: sina_passwd
+        investNum:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: invest_num
+        gesture:
+            type: string
+            nullable: true
+            length: 9
+            options:
+                fixed: false
+        advertisement:
+            type: boolean
+            nullable: false
+            column: Advertisement
+    lifecycleCallbacks: {  }
