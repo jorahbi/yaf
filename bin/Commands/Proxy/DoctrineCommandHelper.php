@@ -57,6 +57,8 @@ class DoctrineCommandHelper extends ConsoleRunner
             new \Doctrine\ORM\Tools\Console\Command\SchemaTool\UpdateCommand(),
             new \Doctrine\ORM\Tools\Console\Command\SchemaTool\DropCommand(),
             new \Doctrine\ORM\Tools\Console\Command\ValidateSchemaCommand(),
+            //Amqp
+            new \Amqp\MQClientCommand()
         ]);
     }
 

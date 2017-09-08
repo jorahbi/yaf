@@ -10,6 +10,7 @@
     "autoload": {
     	"psr-4": {
     		"Commands\\": "bin/Commands",
+            "Amqp\\": "bin/Amqp",
             "Entity\\": "application/Entity",
             "Models\\": "application/models",
             "Yaf\\": "vendor/yaf/yaf" 
