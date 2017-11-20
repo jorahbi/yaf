@@ -2,7 +2,7 @@
 /**
  * @name IndexController
  */
-class IndexController extends \Yaf\Controller {
+class IndexController extends \Kernel\Yaf\Controller {
 
 	/** 
      * 默认动作
@@ -80,4 +80,11 @@ class IndexController extends \Yaf\Controller {
 		];
 		$entityManager = Doctrine\ORM\EntityManager::create($conn, $config);
 	}
+
+
+    public function test1Action()
+    {
+        var_dump('admin test1');
+        return false;
+    }
 }

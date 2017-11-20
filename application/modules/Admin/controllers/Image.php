@@ -1,6 +1,6 @@
 <?php
 
-class ImageController extends \Yaf\Controller
+class ImageController extends \Kernel\Yaf\Controller
 {
 	public function indexAction()
 	{

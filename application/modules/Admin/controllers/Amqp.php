@@ -3,7 +3,7 @@
 use PhpAmqpLib\Message\AMQPMessage;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 
-class AmqpController extends \Yaf\Controller
+class AmqpController extends \Kernel\Yaf\Controller
 {
 	/**
 	 * Amqp send

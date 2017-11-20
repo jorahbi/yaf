@@ -1,6 +1,6 @@
 <?php
 
-class EmailController extends \Yaf\Controller
+class EmailController extends \Kernel\Yaf\Controller
 {
 	public function indexAction()
 	{

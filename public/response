@@ -1,0 +1,30 @@
+swoole_http_request::__set_state(array(
+   'fd' => 1,
+   'header' => 
+  array (
+    'connection' => 'keep-alive',
+    'x-real-ip' => '127.0.0.1',
+    'host' => '127.0.0.1:9501',
+    'user-agent' => 'curl/7.19.7 (i386-redhat-linux-gnu) libcurl/7.19.7 NSS/3.27.1 zlib/1.2.3 libidn/1.18 libssh2/1.4.2',
+    'accept' => '*/*',
+  ),
+   'server' => 
+  array (
+    'request_method' => 'GET',
+    'request_uri' => '/test',
+    'path_info' => '/test',
+    'request_time' => 1510934332,
+    'request_time_float' => 1510934332.026283,
+    'server_port' => 9501,
+    'remote_port' => 36426,
+    'remote_addr' => '127.0.0.1',
+    'server_protocol' => 'HTTP/1.1',
+    'server_software' => 'swoole-http-server',
+  ),
+   'request' => NULL,
+   'cookie' => NULL,
+   'get' => NULL,
+   'files' => NULL,
+   'post' => NULL,
+   'tmpfiles' => NULL,
+))
