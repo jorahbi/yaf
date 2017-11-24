@@ -14,6 +14,7 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract {
         //把配置保存起来
         $arrConfig = \Yaf\Application::app()->getConfig();
         \Yaf\Registry::set('config', $arrConfig);
+        \Yaf\Registry::set('container', new \Kernel\Yaf\Container());
     }
 
     

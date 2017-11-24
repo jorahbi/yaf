@@ -1,7 +1,8 @@
 #!/usr/bin/env php
 <?php
 
-define('APPLICATION_PATH', dirname(dirname(__FILE__)));
+define('APPLICATION_PATH', dirname(dirname(__DIR__)));
+define('APP_ENVIRON', ini_get('yaf.environ'));
 \Yaf\Loader::import(APPLICATION_PATH . '/vendor/autoload.php');
 $result = new \Yaf\Config\Ini(APPLICATION_PATH . '/conf/application.ini');
 define('ENTITYS_DIRECTORY', $result->common->application->orm->entitys);

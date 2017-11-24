@@ -24,6 +24,8 @@ class HttpServer
         );
         $http->on('WorkerStart' , array( $this , 'onWorkerStart'));
         $http->on('request', function ($request, $response) {
+            //\Yaf\Registry::flush();
+            //\Yaf\Dispatcher::destoryInstance();
             if( isset($request->server) ) {
                 HttpServer::$server = $request->server;
             }else{
@@ -49,7 +51,7 @@ class HttpServer
             try {
                 $yaf_request = new \Yaf\Request\Http( 
                     HttpServer::$server['request_uri']);
-                $this->application->getDispatcher()->dispatch($yaf_request);
+                $this->application->bootstrap()->getDispatcher()->dispatch($yaf_request);
                 
                 // unset(Yaf_Application::app());
             } catch ( \Yaf\Exception $e ) {
@@ -63,21 +65,20 @@ class HttpServer
             // add cookies
             
             // set status
-            print_r(HttpServer::$server);
+
             $response->end($result);
            // $response->end($result);
         });
         $http->start();
     }
-    public function onWorkerStart() {
-        
+    public function onWorkerStart() 
+    {    
         $this->application = new \Yaf\Application( APPLICATION_PATH . "/conf/application.ini");
-        ob_start();
-        $this->application->bootstrap()->run();
-        ob_end_clean();
     }
-    public static function getInstance() {
-        if (!self::$instance) {
+    public static function getInstance() 
+    {
+        if (!self::$instance) 
+        {
             self::$instance = new HttpServer;
         }
         return self::$instance;

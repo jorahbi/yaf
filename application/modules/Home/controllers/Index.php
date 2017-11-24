@@ -47,7 +47,12 @@ class IndexController extends \Kernel\Yaf\Controller {
         /*$productRepository = $entityManager->getRepository('\\Entity\\KoActivityQinziRate');
         $products = $productRepository->findAll();
         print_r($products);*/
-
+        $config = (new \Yaf\Config\Ini(APPLICATION_PATH . '/conf/service.ini'))->toArray();
+        
+$test = \Yaf\Registry::get('container');
+        var_dump(get_class($test));
+        print_r(get_class_methods($test));
+        print_r($test->get('request1'));
         $this->json(['front' => 'bbb']);
         //return true;
     }

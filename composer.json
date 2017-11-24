@@ -5,7 +5,8 @@
         "phpoffice/phpexcel": "^1.8.1",
         "imagine/imagine": "^0.7.1",
         "swiftmailer/swiftmailer": "^6.0",
-        "php-amqplib/php-amqplib": "~2.7.0-rc1"
+        "php-amqplib/php-amqplib": "~2.7.0-rc1",
+        "symfony/dependency-injection": "^3.3"
     },
     "autoload": {
     	"psr-4": {
@@ -13,7 +14,8 @@
             "Amqp\\": "kernel/bin/Amqp",
             "Entity\\": "application/Entity",
             "Models\\": "application/models",
-            "Kernel\\": "kernel"
+            "Kernel\\Yaf\\": "kernel/yaf",
+            "Kernel\\Swoole\\Server\\": "kernel/swoole/server"
     	}
     }
 }

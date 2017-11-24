@@ -68,16 +68,24 @@ class DoctrineCommandHelper extends ConsoleRunner
         //$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/src"), $isDevMode);
         // or if you prefer yaml or annotations
         //$config = Setup::createXMLMetadataConfiguration(array(__DIR__."/config/xml"), $isDevMode);
-        $config = Setup::createYAMLMetadataConfiguration([YML_DIRECTORY], IS_DEBUG);
+        //$config = Setup::createYAMLMetadataConfiguration([YML_DIRECTORY], IS_DEBUG);
+        $connect = null;
+        try{
+            $config = new \Yaf\Config\Ini(APPLICATION_PATH . '/conf/database.ini', APP_ENVIRON);
+            $connect =  \Doctrine\ORM\EntityManager::create([
+                    'driver' => $config->master->driver,
+                    'user' => $config->master->user,
+                    'password' => $config->master->pwd,
+                    'host' => $config->master->host,
+                    'dbname' => $config->master->dbname,
+                ], 
+                Setup::createYAMLMetadataConfiguration([YML_DIRECTORY], IS_DEBUG)
+            );
+        }catch(\Exception $e){
+            die($e->getMessage());
+        }
 
-        $conn = array(
-            'driver' => 'pdo_mysql',
-            'user' => 'root',
-            'password' => 'root',
-            'host' => '127.0.0.1',
-            'dbname' => 'test',
-        );
-        return \Doctrine\ORM\EntityManager::create($conn, $config);
+        return $connect;
     }
 
     public static function start()

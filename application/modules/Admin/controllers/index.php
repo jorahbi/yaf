@@ -2,6 +2,11 @@
 /**
  * @name IndexController
  */
+
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+
 class IndexController extends \Kernel\Yaf\Controller {
 
 	/** 
@@ -19,7 +24,7 @@ class IndexController extends \Kernel\Yaf\Controller {
 
 		//4. render by Yaf, 如果这里返回FALSE, Yaf将不会调用自动视图引擎Render模板
         return TRUE;*/
-		$result = new \Yaf\Config\Ini(APPLICATION_PATH . '/conf/application.ini');
+		/*$result = new \Yaf\Config\Ini(APPLICATION_PATH . '/conf/application.ini');
         $config = \Doctrine\ORM\Tools\Setup::createYAMLMetadataConfiguration([$result->common->application->orm->yml], true);
 
         $conn = array(
@@ -30,7 +35,7 @@ class IndexController extends \Kernel\Yaf\Controller {
             'dbname' => 'test',
         );
         
-        $entityManager = \Doctrine\ORM\EntityManager::create($conn, $config);
+        $entityManager = \Doctrine\ORM\EntityManager::create($conn, $config);*/
 
         /*$model = new \Entity\KoActivityQinziRate();
         $model->setMinInvestAmount(1)
@@ -47,8 +52,20 @@ class IndexController extends \Kernel\Yaf\Controller {
         /*$productRepository = $entityManager->getRepository('\\Entity\\KoActivityQinziRate');
 		$products = $productRepository->findAll();
 		print_r($products);*/
-
-		$this->json(['aaa' => 'bbb']);
+        //\Yaf\Registry::get('doctrine');
+        //print_r($_FILES);
+        $test = new \Yaf\Config\Ini(APPLICATION_PATH . '/conf/container.ini');
+		$this->json([
+            //'aaa' => get_class(\Yaf\Registry::get('doctrine-master')),
+            //'bbb' => get_class(\Yaf\Registry::get('doctrine-slave')),
+            'request' => $this->getRequest()->getPost(),
+            'files' => $this->getRequest()->getFiles(),
+            'requestMethod' => $this->getRequest()->getMethod(),
+            'response' => get_class($this->getResponse()),
+            'container' => (new \Yaf\Config\Ini(APPLICATION_PATH . '/conf/container.ini'))->toArray()
+            //'server' => $_SERVER
+            //'response' => get_class_methods($this->getResponse())
+        ]);
         //return true;
 	}
 
@@ -56,13 +73,8 @@ class IndexController extends \Kernel\Yaf\Controller {
 	public function testAction()
 	{
 		\Yaf\Dispatcher::getInstance()->disableView();
-		//$result = \Yaf\Loader::import(APPLICATION_PATH . '/vendor/doctrine/common/lib/Doctrine/Common/ClassLoader.php');
-		
-		//var_dump(new \Doctrine\Common\ClassLoader());
-		//var_dump(new \Symfony\Component\Yaml\Command\LintCommand());
-		$driver = Doctrine\ORM\Mapping\Driver\YamlDriver();
-		$driver = new YamlDriver(array('/path/to/files'));
-		$config->setMetadataDriverImpl($driver);
+        $test = \Yaf\Registry::get('container')->get('request');
+        print_r($test->mailer);
 	}
 
 
@@ -82,9 +94,5 @@ class IndexController extends \Kernel\Yaf\Controller {
 	}
 
 
-    public function test1Action()
-    {
-        var_dump('admin test1');
-        return false;
-    }
+    
 }
