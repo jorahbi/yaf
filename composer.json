@@ -9,13 +9,14 @@
         "symfony/dependency-injection": "^3.3"
     },
     "autoload": {
-    	"psr-4": {
-    		"Commands\\": "kernel/bin/Commands",
+        "psr-4": {
+            "Commands\\": "kernel/bin/Commands",
             "Amqp\\": "kernel/bin/Amqp",
             "Entity\\": "application/Entity",
             "Models\\": "application/models",
             "Kernel\\Yaf\\": "kernel/yaf",
-            "Kernel\\Swoole\\Server\\": "kernel/swoole/server"
-    	}
+            "Kernel\\Swoole\\Service\\": "kernel/swoole/service",
+            "Kernel\\Yaf\\Service\\": "kernel/yaf/service"
+        }
     }
 }

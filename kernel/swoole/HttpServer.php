@@ -102,7 +102,7 @@ class HttpServer
     {   
         \Yaf\Registry::set( 'server', $worker_id);
         $this->application = new \Yaf\Application( APPLICATION_PATH . "/conf/application.ini");
-        Doctrine::initialization();
+        //Doctrine::initialization();
     }
 
     public static function getInstance() 
