@@ -124,6 +124,7 @@ EOT
         // Process destination directory $input->getArgument('dest-path')
         //$destPath = $input->getArgument('dest-path');
         $destPath = realpath(ENTITYS_DIRECTORY);
+        
         if ( ! file_exists($destPath)) {
             throw new \InvalidArgumentException(
                 sprintf("Entities destination directory '<info>%s</info>' does not exist.", $input->getArgument('dest-path'))

@@ -53,4 +53,9 @@ class AmqpController extends \Kernel\Yaf\Controller
 		$connection->close();
 		$this->json([]);
 	}
+
+	public function testAction()
+	{
+		print_r('sssss');
+	}
 }

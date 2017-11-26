@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection ;
  */
 class EntityManager extends DoctrinetEntityManager
 {
-	protected static $defaultShare;
+	protected static $defaultShareName;
 	protected static $shareMap;
 	protected $shareName;
 
@@ -20,27 +20,26 @@ class EntityManager extends DoctrinetEntityManager
 		$DBConfig = new \Yaf\Config\Ini(APPLICATION_PATH . '/conf/database.ini', APP_ENVIRON);
 		$appConfig= new \Yaf\Config\Ini(APPLICATION_PATH . '/conf/application.ini');
 		$shares = explode(',', $DBConfig->database->share);
-		self::$defaultShare = $shares[0];
-		
+		self::$defaultShareName = $shares[0];
+		$doctrineConfig = \Doctrine\ORM\Tools\Setup::createYAMLMetadataConfiguration([$appConfig->common->application->orm->yml], false);
 		foreach ($shares as $shareName) 
 		{
-			$doctrineConfig = \Doctrine\ORM\Tools\Setup::createYAMLMetadataConfiguration([$appConfig->common->application->orm->yml], true);
 			$dsn = [
-				'driver' => $DBConfig->$share->driver,
-				'user' => $DBConfig->$share->user,
-				'password' => $DBConfig->$share->pwd,
-				'host' => $DBConfig->$share->host,
-				'dbname' => $DBConfig->$share->dbname,
+				'driver' => $DBConfig->$shareName->driver,
+				'user' => $DBConfig->$shareName->user,
+				'password' => $DBConfig->$shareName->pwd,
+				'host' => $DBConfig->$shareName->host,
+				'dbname' => $DBConfig->$shareName->dbname,
 			];
 			$share = self::create($dsn, $doctrineConfig);
-			$share->shareName = $share;
+			$share->shareName = $shareName;
 			self::$shareMap->set($shareName, $share);
 		}
 	}
 
 	public function getConnect($shareId = null)
 	{
-		$shareId  = $shareId ?: self::$defaultShare;
+		$shareId  = $shareId ?: self::$defaultShareName;
 		return self::$shareMap->get($shareId);
 	}
 
@@ -49,9 +48,9 @@ class EntityManager extends DoctrinetEntityManager
 		return self::$shareMap;
 	}
 
-	public function getDefaultShare()
+	public function getDefaultShareName()
 	{
-		return self::$defaultShare;
+		return self::$defaultShareName;
 	}
 
 	public function getShareName()

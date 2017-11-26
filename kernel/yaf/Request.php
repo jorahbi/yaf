@@ -4,19 +4,13 @@ namespace Kernel\Yaf;
 
 use Swoole\Http\Request as SwooleRequest;
 
-class Request extends \Yaf\Request\Http
+class Request //extends \Yaf\Request\Http
 {
     protected $cookies;
     protected $header;
     protected $server;
     protected $files;
     protected $swooleRequest;
-    public $mailer;
-
-    public function setMailer($mailer)
-    {
-        $this->mailer = $mailer;
-    }
 
     public function initialization(SwooleRequest $request)
     {

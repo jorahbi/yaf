@@ -21,20 +21,25 @@ class Container extends ContainerBuilder
 		}
 		foreach ($config['services'] as $key => $value) 
 		{
-			if(!class_exists($value))
+			if(!class_exists($value['class']))
 			{
-				continue;
+				throw new \Exception('class not found', 1);
 			}
 			$service = $this->register($key, $value['class']);
-			$constructArgs = explode(',', $value['arguments']);
-			foreach ($constructArgs as $arg) 
+			if(isset($value['arguments']))
 			{
-				$service->addArgument($this->preArgs(trim($arg)));
+				$constructArgs = explode(',', $value['arguments']);
+				foreach ($constructArgs as $arg) 
+				{
+					$service->addArgument($this->preArgs(trim($arg)));
+				}
 			}
-
-			foreach ($value['calls'] as $methodName => $arg) 
+			if(isset($value['calls'] ))
 			{
-				$service->addMethodCall($methodName, [$this->preArgs(trim($arg))]);
+				foreach ($value['calls'] as $methodName => $arg) 
+				{
+					$service->addMethodCall($methodName, [$this->preArgs(trim($arg))]);
+				}
 			}									
 		}
 
@@ -42,7 +47,7 @@ class Container extends ContainerBuilder
 
 	protected function preArgs($arg)
 	{
-		if(strpos($arg, '@'))
+		if(strpos($arg, '@') !== false)
 		{
 			return new Reference(trim($arg, '@'));
 		}

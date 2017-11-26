@@ -3,6 +3,7 @@
 namespace Kernel\Swoole\Service;
 
 use Doctrine\Common\Collections\ArrayCollection ;
+use Kernel\Yaf\Service\EntityManager;
 
 /**
  * 数据库连接池
@@ -11,16 +12,20 @@ class EntityManagerPool
 {
 	
 	protected static $shareMap;
-	protected static $defaultShare;
+	protected static $defaultShareName;
+	protected static $entityManager;
 
-	public function __construct(\Kernel\Yaf\Service\EntityManager $EntityManager, $workNum)
+	public function __construct(EntityManager $entityManager, $workNum)
 	{
-		self::$shareMap = $EntityManager->getShareMap();
-		foreach (self::$shareMap as $key => $share) 
+		self::$entityManager = $entityManager->getShareMap();
+		self::$shareMap = new ArrayCollection();
+		self::$defaultShareName = $entityManager->getDefaultShareName();
+		$splQueue = new \SplQueue();
+		foreach (self::$entityManager as $key => $share) 
 		{
-			$shareWorkQueue = new \SplQueue();
-			$shareWorkQueue->push($share);
-			for ($i = 0; $i  < $workNum - 1; $i++) 
+			$shareWorkQueue = clone $splQueue;
+			//$shareWorkQueue->setIteratorMode(\SplQueue::IT_MODE_DELETE);
+			for ($i = 0; $i  < $workNum; $i++) 
 			{ 
 				$shareWorkQueue->push(clone $share);
 			}
@@ -30,22 +35,24 @@ class EntityManagerPool
 
 	public function getConnect($shareId = null)
 	{
-		$shareId  = $shareId ?: self::$defaultShare;
-		$shareWorkQueue = self::$workMap->get($shareId );
-		$this->currentShare = new \ArrayCollection();
+		$shareId  = $shareId ?: self::$defaultShareName;
+		if(!self::$shareMap->containsKey($shareId))
+		{
+			throw new \Exception('database not share', 1);
+		}
+		$shareWorkQueue = self::$shareMap->get($shareId );
 		while (true)
 		 {
 			if(!$shareWorkQueue->isEmpty())
 			{
 				$connect = $shareWorkQueue->pop();
-				$this->currentShare->set($shareId, $connect);
 				return $connect;
 			}
 		}
 	}
 
-	public function unlock(\Kernel\Yaf\Service\EntityManager $currentShare)
+	public function unlock(EntityManager $currentShare)
 	{
-		self::$workMap->get($currentShare->getShareName() )->push($currentShare);
+		self::$shareMap->get($currentShare->getShareName())->push($currentShare);
 	}
 }       
