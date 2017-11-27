@@ -27,7 +27,9 @@ class EntityManagerPool
 			//$shareWorkQueue->setIteratorMode(\SplQueue::IT_MODE_DELETE);
 			for ($i = 0; $i  < $workNum; $i++) 
 			{ 
-				$shareWorkQueue->push(clone $share);
+				$clone = clone $share;
+				$clone->card = $share->shareName . '<=>' . $i;
+				$shareWorkQueue->push($clone);
 			}
 			self::$shareMap->set($key, $shareWorkQueue );
 		}
@@ -41,8 +43,10 @@ class EntityManagerPool
 			throw new \Exception('database not share', 1);
 		}
 		$shareWorkQueue = self::$shareMap->get($shareId );
+		$isWait = false;
 		while (true)
 		 {
+
 			if(!$shareWorkQueue->isEmpty())
 			{
 				$connect = $shareWorkQueue->pop();
@@ -53,6 +57,6 @@ class EntityManagerPool
 
 	public function unlock(EntityManager $currentShare)
 	{
-		self::$shareMap->get($currentShare->getShareName())->push($currentShare);
+		self::$shareMap->get($currentShare->shareName)->push($currentShare);
 	}
 }       

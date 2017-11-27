@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection ;
 /**
  * 数据库连接
  */
-class EntityManager extends DoctrinetEntityManager
+class EntityManager
 {
 	protected static $defaultShareName;
 	protected static $shareMap;
@@ -21,7 +21,7 @@ class EntityManager extends DoctrinetEntityManager
 		$appConfig= new \Yaf\Config\Ini(APPLICATION_PATH . '/conf/application.ini');
 		$shares = explode(',', $DBConfig->database->share);
 		self::$defaultShareName = $shares[0];
-		$doctrineConfig = \Doctrine\ORM\Tools\Setup::createYAMLMetadataConfiguration([$appConfig->common->application->orm->yml], false);
+		$doctrineConfig = \Doctrine\ORM\Tools\Setup::createYAMLMetadataConfiguration([$appConfig->common->application->orm->yml], true);
 		foreach ($shares as $shareName) 
 		{
 			$dsn = [
@@ -31,7 +31,7 @@ class EntityManager extends DoctrinetEntityManager
 				'host' => $DBConfig->$shareName->host,
 				'dbname' => $DBConfig->$shareName->dbname,
 			];
-			$share = self::create($dsn, $doctrineConfig);
+			$share = DoctrinetEntityManager::create($dsn, $doctrineConfig);
 			$share->shareName = $shareName;
 			self::$shareMap->set($shareName, $share);
 		}

@@ -56,6 +56,7 @@ class AmqpController extends \Kernel\Yaf\Controller
 
 	public function testAction()
 	{
-		print_r('sssss');
+		\Yaf\Dispatcher::getInstance()->disableView();
+		print_r('fdsf');
 	}
 }

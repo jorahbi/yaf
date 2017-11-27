@@ -71,13 +71,29 @@ class IndexController extends \Kernel\Yaf\Controller {
 	public function testAction()
 	{
 		\Yaf\Dispatcher::getInstance()->disableView();
-
+		\Swoole\Timer::after(1000, function(){
+			var_dump(class_exists('\Swoole\Timer'));	
+		});
+		
+		//var_dump(\Yaf\Registry::get('container')->has('em_pool'));
+		//var_dump(\Yaf\Registry::get('container')->get('em_pool'));
 		//$shareMap = \Yaf\Registry::get('container')->get('em_pool')->getShareMap();
 
 		//var_dump($shareMap->get('slave')->isEmpty());
 		//var_dump($shareMap->get('slave')->count());
-		print_r(\Yaf\Registry::get('container')->get('em_pool')->getConnect()->shareName);
-		print_r(\Yaf\Registry::get('container')->get('em_pool')->getConnect());
+		$connect = \Yaf\Registry::get('container')->get('em_pool')->getConnect();
+		var_dump($connect->card);
+		//\Yaf\Registry::get('container')->get('em_pool')->unlock($connect);
+		/*var_dump(\Yaf\Registry::get('container')->get('em_pool')->getConnect()->card);
+		var_dump(\Yaf\Registry::get('container')->get('em_pool')->getConnect()->card);
+		var_dump(\Yaf\Registry::get('container')->get('em_pool')->getConnect()->card);
+		var_dump(\Yaf\Registry::get('container')->get('em_pool')->getConnect()->card);
+		var_dump(\Yaf\Registry::get('container')->get('em_pool')->getConnect()->card);
+		var_dump(\Yaf\Registry::get('container')->get('em_pool')->getConnect()->card);
+		var_dump(\Yaf\Registry::get('container')->get('em_pool')->getConnect()->card);
+		var_dump(\Yaf\Registry::get('container')->get('em_pool')->getConnect()->card);
+		var_dump(\Yaf\Registry::get('container')->get('em_pool')->getConnect()->card);*/
+		//print_r(\Yaf\Registry::get('container')->get('em_pool')->getConnect());
 
 		/*foreach ($shareMap->get('master') as $value) 
 		{
